@@ -5,17 +5,22 @@ const Context = createContext({});
 
 const ContextWrapper = ({children}) => {
     const [userData, setUserData] = useState({});
+    const [marketData, setMarketData] = useState({});
 
     const login = (data) => {
         setUserData(data);
-        if (userData[1] == 1) {
-            console.log("+");
-        }
+    }
+
+    const getMarket = (data) => {
+        setMarketData(data);
     }
 
     const values = {
         userData,
-        login
+        setUserData,
+        login,
+        marketData,
+        getMarket
     }
 
     return <Context.Provider value={values}>
