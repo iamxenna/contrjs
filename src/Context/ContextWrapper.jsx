@@ -6,6 +6,7 @@ const Context = createContext({});
 const ContextWrapper = ({children}) => {
     const [userData, setUserData] = useState({});
     const [marketData, setMarketData] = useState({});
+    const [marketsData, setMarketsData] = useState([]);
 
     const login = (data) => {
         setUserData(data);
@@ -15,12 +16,18 @@ const ContextWrapper = ({children}) => {
         setMarketData(data);
     }
 
+    const getMarkets = (data) => {
+        setMarketsData(data);
+    }
+
     const values = {
         userData,
         setUserData,
         login,
         marketData,
-        getMarket
+        marketsData,
+        getMarket,
+        getMarkets
     }
 
     return <Context.Provider value={values}>

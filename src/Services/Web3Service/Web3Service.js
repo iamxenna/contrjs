@@ -3,7 +3,7 @@ import ABI from "./ABI.json"
 
 class Web3Service {
     web3 = new Web3("http://localhost:8545");
-    contract = new this.web3.eth.Contract(ABI, "0x032B269fa9e900Dc4036DD24C3A4D665710e3e83");
+    contract = new this.web3.eth.Contract(ABI, "0xe3511ab76B9F97FFCf952443108d3A8212dDa813");
 
     async registerUser(address, name, password, word) {
         try {
@@ -64,6 +64,14 @@ class Web3Service {
     async getMarket(address) {
         try {
             return await this.contract.methods.getMarket(address).call({from: address});
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    async getMarkets(address) {
+        try {
+            return await this.contract.methods.getUsers().call({from: address});
         } catch (e) {
             console.log(e);
         }
