@@ -1,6 +1,5 @@
 import {createContext, useState} from "react";
 
-
 const Context = createContext({});
 
 const ContextWrapper = ({children}) => {
