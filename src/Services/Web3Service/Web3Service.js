@@ -3,7 +3,7 @@ import ABI from "./ABI.json"
 
 class Web3Service {
     web3 = new Web3("http://localhost:8545");
-    contract = new this.web3.eth.Contract(ABI, "0x55532EF47BE9753318dc1A4fe0bD3bEbD277eA12");
+    contract = new this.web3.eth.Contract(ABI, "0x65C2ABADE83c1CB11bb7C9Bdc7007003Ffbd174d");
 
     async registerUser(address, name, password, word) {
         try {
@@ -29,33 +29,33 @@ class Web3Service {
         }
     }
 
-    async setRole(address, role) {
+    async setRole(userAddress, role) {
         try {
-            return await this.contract.methods.setRole(role).send({from: address});
+            return await this.contract.methods.setRole(role).send({from: userAddress});
         } catch (e) {
             console.log(e);
         }
     }
 
-    async addAdmin(address) {
+    async addAdmin(userAddress, address) {
         try {
-            return await this.contract.methods.addAdmin(address).send({from: "0x3Dc5eaCBb57B4a935e186386152e408428A7e8eE"});
+            return await this.contract.methods.addAdmin(userAddress).send({from: address});
         } catch (e) {
             console.log(e);
         }
     }
 
-    async addMarket(address, city) {
+    async addMarket(shopAddress, city, address) {
         try {
-            return await this.contract.methods.addMarket(address, city).send({from: address});
+            return await this.contract.methods.addMarket(shopAddress, city).send({from: address});
         } catch (e) {
             console.log(e);
         }
     }
 
-    async removeMarket(address) {
+    async removeMarket(shopAddress, address) {
         try {
-            return await this.contract.methods.removeMarket(address).send({from: address});
+            return await this.contract.methods.removeMarket(shopAddress).send({from: address});
         } catch (e) {
             console.log(e);
         }
@@ -104,6 +104,14 @@ class Web3Service {
     async listCustomerRequests(address) {
         try {
             return await this.contract.methods.listCustomerRequests().call({from: address});
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    async createComment(id, comment, address) {
+        try {
+            return await this.contract.methods.createComment(id, comment).send({from: address});
         } catch (e) {
             console.log(e);
         }

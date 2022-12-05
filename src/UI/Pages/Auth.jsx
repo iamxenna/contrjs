@@ -31,7 +31,7 @@ const Auth = () => {
         const word = e.target[0].value;
         const data = await Web3Service.checkWord(address, word);
         if (data) {
-            login(data);
+            login({...data, address});
             navigation.push("/home");
         }
     }

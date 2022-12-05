@@ -10,6 +10,7 @@ import {RequestCustomer} from "../Components/RequestCustomer/RequestCustomer";
 import {RequestVendor} from "../Components/RequestVendor/RequestVendor";
 import {ListCustomerRequests} from "../Components/ListCustomerRequests/ListCustomerRequests";
 import {ListVendorRequests} from "../Components/ListVendorRequests/ListVendorRequests";
+import {CreateComment} from "../Components/CreateComment/CreateComment";
 
 const Home = () => {
 
@@ -38,6 +39,7 @@ const Home = () => {
                         <h1 className="text-center mt-3">{userData.name} | {"Customer"}</h1>
                         <div className="d-flex flex-row flex-wrap justify-content-between m-auto" style={{width: "60vw"}}>
                             <RequestVendor/>
+                            <CreateComment/>
                         </div>
                     </>) : undefined
             }

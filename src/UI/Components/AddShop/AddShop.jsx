@@ -1,13 +1,16 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import Web3Service from "../../../Services/Web3Service/Web3Service";
 import {Button, Form} from "react-bootstrap";
+import {Context} from "../../../Context/ContextWrapper";
 
 export const AddShop = () => {
+
+    const { userData } = useContext(Context);
 
     const addShopHandler = async (e) => {
         e.preventDefault();
         const { target } = e;
-        const data = await Web3Service.addMarket(target[0].value, target[1].value);
+        const data = await Web3Service.addMarket(target[0].value, target[1].value, userData.address);
         console.log(data);
     }
 

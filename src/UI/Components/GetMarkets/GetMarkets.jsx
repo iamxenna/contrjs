@@ -6,25 +6,21 @@ import {ModalMarkets} from "../ModalMarkets/ModalMarkets";
 
 export const GetMarkets = () => {
 
-    const { getMarkets } = useContext(Context);
+    const { getMarkets, userData } = useContext(Context);
 
     const [showModel, setShowModel] = useState(false);
 
     const getMarketsHandler = async (e) => {
         e.preventDefault();
         const { target } = e;
-        const data = await Web3Service.getMarkets(target[0].value);
-        getMarkets(data.filter((el) => el.role === String(4)));
+        const data = await Web3Service.getMarkets(userData.address);
+        getMarkets(data.filter((el) => el.role === "4"));
     }
 
     return (
         <Form onSubmit={getMarketsHandler} style={{width: "15rem", marginTop: "2rem"}}>
 
             <h5>Get Markets</h5>
-            <Form.Group className="mb-3">
-                <Form.Label>Address</Form.Label>
-                <Form.Control type="text" placeholder="Enter Address" />
-            </Form.Group>
 
             <Button type="submit" onClick={() => setShowModel(true)}>
                 Submit

@@ -3,7 +3,15 @@ import {createContext, useState} from "react";
 const Context = createContext({});
 
 const ContextWrapper = ({children}) => {
-    const [userData, setUserData] = useState({});
+
+    const initialUserData = {
+        name: "",
+        role: "",
+        reviewsCount: "",
+        address: ""
+    }
+
+    const [userData, setUserData] = useState(initialUserData);
     const [marketData, setMarketData] = useState({});
     const [marketsData, setMarketsData] = useState([]);
 
@@ -19,6 +27,10 @@ const ContextWrapper = ({children}) => {
         setMarketsData(data);
     }
 
+    const logout = () => {
+        setUserData(initialUserData);
+    }
+
     const values = {
         userData,
         setUserData,
@@ -26,7 +38,8 @@ const ContextWrapper = ({children}) => {
         marketData,
         marketsData,
         getMarket,
-        getMarkets
+        getMarkets,
+        logout
     }
 
     return <Context.Provider value={values}>

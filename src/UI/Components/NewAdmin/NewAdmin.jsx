@@ -1,13 +1,16 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import Web3Service from "../../../Services/Web3Service/Web3Service";
 import {Button, Form} from "react-bootstrap";
+import {Context} from "../../../Context/ContextWrapper";
 
 export const NewAdmin = () => {
+
+    const { userData } = useContext(Context);
 
     const newAdminHandler = async (e) => {
         e.preventDefault();
         const { target } = e;
-        const data = await Web3Service.addAdmin(target[0].value);
+        const data = await Web3Service.addAdmin(target[0].value, userData.address);
         console.log(data);
     }
 
