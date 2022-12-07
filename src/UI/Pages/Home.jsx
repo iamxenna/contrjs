@@ -11,6 +11,8 @@ import {RequestVendor} from "../Components/RequestVendor/RequestVendor";
 import {ListCustomerRequests} from "../Components/ListCustomerRequests/ListCustomerRequests";
 import {ListVendorRequests} from "../Components/ListVendorRequests/ListVendorRequests";
 import {CreateComment} from "../Components/CreateComment/CreateComment";
+import {ApproveVendor} from "../Components/ApproveVendor/ApproveVendor";
+import {DemoteVendor} from "../Components/DemoteVendor/DemoteVendor";
 
 const Home = () => {
 
@@ -24,12 +26,14 @@ const Home = () => {
                         <h1 className="text-center mt-3">{userData.name} | {"Admin"}</h1>
                         <div className="d-flex flex-row flex-wrap justify-content-between m-auto" style={{width: "60vw"}}>
                             <NewRole/>
-                            <NewAdmin/>
-                            <AddShop/>
-                            <RemoveShop/>
-                            <GetMarket/>
-                            <GetMarkets/>
-                            <ListVendorRequests/>
+                            <NewAdmin address={userData.address}/>
+                            <AddShop address={userData.address}/>
+                            <RemoveShop address={userData.address}/>
+                            <GetMarket address={userData.address}/>
+                            <GetMarkets address={userData.address}/>
+                            <ListVendorRequests address={userData.address}/>
+                            <ApproveVendor address={userData.address}/>
+                            <DemoteVendor address={userData.address}/>
                         </div>
                     </>) : undefined
             }
@@ -38,8 +42,8 @@ const Home = () => {
                     (<>
                         <h1 className="text-center mt-3">{userData.name} | {"Customer"}</h1>
                         <div className="d-flex flex-row flex-wrap justify-content-between m-auto" style={{width: "60vw"}}>
-                            <RequestVendor/>
-                            <CreateComment/>
+                            <RequestVendor address={userData.address}/>
+                            <CreateComment address={userData.address}/>
                         </div>
                     </>) : undefined
             }
@@ -48,8 +52,8 @@ const Home = () => {
                     (<>
                         <h1 className="text-center mt-3">{userData.name} | {"Vendor"}</h1>
                         <div className="d-flex flex-row flex-wrap justify-content-between m-auto" style={{width: "60vw"}}>
-                            <RequestCustomer/>
-                            <ListCustomerRequests/>
+                            <RequestCustomer address={userData.address}/>
+                            <ListCustomerRequests address={userData.address}/>
                         </div>
                     </>) : undefined
             }

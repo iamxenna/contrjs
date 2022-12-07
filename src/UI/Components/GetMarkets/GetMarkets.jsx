@@ -4,16 +4,15 @@ import {Button, Form} from "react-bootstrap";
 import {Context} from "../../../Context/ContextWrapper";
 import {ModalMarkets} from "../ModalMarkets/ModalMarkets";
 
-export const GetMarkets = () => {
+export const GetMarkets = ({address}) => {
 
-    const { getMarkets, userData } = useContext(Context);
+    const { getMarkets } = useContext(Context);
 
     const [showModel, setShowModel] = useState(false);
 
     const getMarketsHandler = async (e) => {
         e.preventDefault();
-        const { target } = e;
-        const data = await Web3Service.getMarkets(userData.address);
+        const data = await Web3Service.getMarkets(address);
         getMarkets(data.filter((el) => el.role === "4"));
     }
 

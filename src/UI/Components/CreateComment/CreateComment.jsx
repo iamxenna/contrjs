@@ -1,17 +1,15 @@
-import React, {useContext, useState} from 'react';
+import React, {useState} from 'react';
 import {Button, Form} from "react-bootstrap";
-import {Context} from "../../../Context/ContextWrapper";
 import Web3Service from "../../../Services/Web3Service/Web3Service";
 
-export const CreateComment = () => {
+export const CreateComment = ({address}) => {
 
-    const { userData } = useContext(Context);
     const [commentId, setCommentId] = useState(1);
 
     const createCommentHandler = async (e) => {
         e.preventDefault();
         const { target } = e;
-        await Web3Service.createComment(commentId, target[0].value, userData.address);
+        await Web3Service.createComment(commentId, target[0].value, address);
         setCommentId(commentId + 1);
     }
 
